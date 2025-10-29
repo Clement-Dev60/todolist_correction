@@ -7,6 +7,7 @@ export default class Task {
   name;     // Nom de la tâche
   checked = false; // Indique si la tâche est cochée
   checkbox; // Élément HTML associé
+  deletebutton;
 
   constructor(data) {
     // Assigne un ID unique à la tâche
@@ -23,8 +24,18 @@ export default class Task {
 
     // Ajoute un événement pour inverser l’état coché/non coché
     checkbox.addEventListener("click", () => this.toggle());
-  }
 
+    const deletebutton = document.createElement("button");
+    deletebutton.textContent = "❌";
+    deletebutton.title = "Supprimer la tâche";
+    this.deletebutton = deletebutton
+    
+    deletebutton.addEventListener("click", () => {
+      window.taskToDelete = this;
+      opentest();
+    });
+  }
   // Inverse l’état "checked" de la tâche
   toggle = () => (this.checked = !this.checked);
+
 }

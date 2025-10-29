@@ -1,3 +1,4 @@
+import Task from "./Task.js"; 
 /* Classe représentant un rendez-vous, héritée de Task */
 export default class Appoitment extends Task {
   date; // Date du rendez-vous

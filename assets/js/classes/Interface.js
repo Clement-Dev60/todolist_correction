@@ -25,39 +25,41 @@ export default class Interface {
   }
 
   // Affiche la liste des tâches dans le DOM
-  static displayTasks() {
+  static displayTasks(tasks) {
     if (!Interface.listHTML || !Interface.completedListHTML) return;
     Interface.listHTML.innerHTML = ""; // Réinitialise la liste
     Interface.completedListHTML.innerHTML = "";
 
-    const activeTasks = Interface.list.filter(task => !task.checked);
-    const completedTasks = Interface.list.filter(task => task.checked)
+    const activeTasks = tasks.filter(task => !task.checked);
+    const completedTasks = tasks.filter(task => task.checked);
 
-    activeTasks.forEach(task => {
+    activeTasks.forEach((task) => {
       const li = document.createElement("li");
-      li.appendChild(task.checkbox);
 
-      const p = document.createElement("p");
-      p.textContent = task.displayName;
-      li.appendChild(p);
+      li.appendChild(task.checkbox); // Ajoute la case à cocher
 
       li.appendChild(task.deletebutton);
-      Interface.listHTML.appendChild(li);
+
+      const p = document.createElement("p");
+      p.textContent = task.name; // Ajoute le nom de la tâche
+      li.appendChild(p);
+
+      Interface.listHTML.appendChild(li); // Ajoute la tâche à la liste
     });
-
-    completedTasks.forEach(task => {
+    completedTasks.forEach((task) => {
       const li = document.createElement("li");
-      task.checkbox.checked = true;
-      li.appendChild(task.checkbox);
 
-      const p = document.createElement("p");
-      p.textContent = task.displayName;
-      li.appendChild(p);
+      li.appendChild(task.checkbox); // Ajoute la case à cocher
+      task.checkbox.checked = true;
 
       li.appendChild(task.deletebutton);
+
+      const p = document.createElement("p");
+      p.textContent = task.name; // Ajoute le nom de la tâche
+      li.appendChild(p);
+
       Interface.completedListHTML.appendChild(li);
     });
-
     if (activeTasks.length === 0) {
       const emptyActive = document.createElement("div");
       emptyActive.classList.add("empty-message");
@@ -78,23 +80,5 @@ export default class Interface {
       Interface.completedListHTML.appendChild(emptyCompleted);
     }
   }
-  static delete() {
-    window.opentest = function () {
-      const popup = document.getElementById("deletePopUp");
-      popup.classList.toggle("display");
-      setTimeout(() => {
-        popup.classList.toggle("open");
-      }, 50);
-    };
-
-    window.closetest = function () {
-      const popup = document.getElementById("deletePopUp");
-      popup.classList.remove("open");
-      setTimeout(() => {
-        popup.classList.remove("display");
-      }, 300);
-    };
-
-    window.taskToDelete = null;
-  }
+  delete = () => (Interface.list = Interface.list.filter(t => t !== this));
 }

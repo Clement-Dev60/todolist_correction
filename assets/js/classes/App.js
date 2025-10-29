@@ -18,7 +18,7 @@ export default class App {
       }
 
       // Met à jour l'affichage des tâches
-      Interface.displayTasks();
+      Interface.displayTasks(this.tasks);
     });
   }
 }

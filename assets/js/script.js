@@ -1,4 +1,5 @@
 import App from "./classes/App.js";
+import Interface from "./classes/Interface.js";
 
 new App();
 
@@ -40,3 +41,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+const confirmDeleteButton = document.getElementById("confirmDelete");
+confirmDeleteButton.addEventListener("click", () => {
+    if (window.taskToDelete) {
+        window.taskToDelete.delete();
+        window.taskToDelete = null;
+        closetest();
+    }
+});
+window.opentest = function () {
+    const popup = document.getElementById("deletePopUp");
+    popup.classList.toggle("display");
+    setTimeout(() => {
+        popup.classList.toggle("open");
+    }, 50);
+};
+
+window.closetest = function () {
+    const popup = document.getElementById("deletePopUp");
+    popup.classList.remove("open");
+    setTimeout(() => {
+        popup.classList.remove("display");
+    }, 300);
+};
+
+window.taskToDelete = null;
