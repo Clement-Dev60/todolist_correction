@@ -1,0 +1,382 @@
+body {
+	font-family: "Arial", sans-serif;
+	background: linear-gradient(135deg, #8a8a8a, #e0e4eb);
+	color: #333;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	min-height: 100vh;
+	background-image: url(../images/carapuce-combat.png) disabled;
+	background-size: cover disabled;
+	backdrop-filter: blur(5px) disabled;
+}
+
+.modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: none;
+	opacity: 0;
+	background: rgba(0, 0, 0, 0.35);
+	backdrop-filter: blur(5px);
+	transition: opacity 0.3s ease;
+	z-index: 1000;
+}
+
+.modal.display {
+	display: block;
+}
+
+.modal.open {
+	opacity: 1;
+}
+
+.modal > div {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(0.6);
+	width: 40rem;
+	max-width: 90%;
+	height: 20rem;
+	max-height: 90%;
+	background: rgba(255, 255, 255, 0.15);
+	border-radius: 1rem;
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	backdrop-filter: blur(10px);
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+	transition: transform 0.3s ease, background 0.3s ease;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 1rem;
+}
+
+.modal.open > div {
+	transform: translate(-50%, -50%) scale(1);
+}
+
+#newTaskName {
+	width: 50%;
+	max-width: 300px;
+	padding: 0.6rem;
+	font-size: 1rem;
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	border-radius: 8px;
+	outline: none;
+	background: rgba(255, 255, 255, 0.25);
+	color: #333;
+	backdrop-filter: blur(5px);
+	transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#newTaskName:focus {
+	border-color: #5271b3;
+	box-shadow: 0 0 8px rgba(37, 99, 235, 0.5);
+}
+
+#newTaskValidate {
+	margin-top: 10px;
+	padding: 0.6rem 1.2rem;
+	font-size: 1rem;
+	background: #5271b3;
+	color: #fff;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: background 0.3s, transform 0.2s;
+}
+
+#newTaskValidate:hover {
+	background: #1e40af;
+	transform: scale(1.05);
+}
+
+ul li button {
+	background: rgba(255, 255, 255, 0.2);
+	color: #333;
+	border: none;
+	border-radius: 6px;
+	padding: 0.3rem 0.6rem;
+	cursor: pointer;
+	font-size: 0.9rem;
+	transition: background 0.2s, color 0.2s;
+}
+
+ul li button:hover {
+	background: #5271b3;
+	color: #fff;
+}
+
+#nav {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	position: relative;
+	padding: 1rem 2rem;
+	background-color: #5271b3;
+	color: #fff;
+	border-radius: 0 0 16px 16px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+#nav select {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	padding: 0.7rem 2rem;
+	font-size: 1rem;
+	font-weight: bold;
+	color: #fff;
+	background: rgba(255, 255, 255, 0.15);
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	border-radius: 12px;
+	cursor: pointer;
+	overflow: hidden;
+	transition: all 0.3s ease;
+	backdrop-filter: blur(10px);
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+#nav > div:first-child {
+	z-index: 1;
+}
+
+#connect {
+	z-index: 1;
+}
+
+#nav img {
+	width: 40px;
+	height: 40px;
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 1rem auto;
+	max-width: 450px;
+}
+
+ul li {
+	background: rgba(255, 255, 255, 0.15);
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	backdrop-filter: blur(8px);
+	padding: 0.8rem 1rem;
+	margin-bottom: 0.5rem;
+	border-radius: 10px;
+	text-align: left;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	transition: background 0.3s, transform 0.2s;
+}
+
+ul li:hover {
+	background: rgba(255, 255, 255, 0.25);
+	transform: translateY(-2px);
+}
+
+ul li.completed {
+	text-decoration: line-through;
+	color: #999;
+	background: rgba(200, 200, 200, 0.15);
+}
+
+@media (max-width: 500px) {
+	#toDoList {
+		font-size: 1.5rem;
+		padding: 1rem;
+	}
+
+	#newTaskName {
+		width: 70%;
+	}
+
+	ul li {
+		font-size: 0.95rem;
+	}
+}
+#connect button {
+	position: relative;
+	padding: 0.7rem 2rem;
+	font-size: 1rem;
+	font-weight: bold;
+	color: #fff;
+	background: rgba(255, 255, 255, 0.15);
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	border-radius: 12px;
+	cursor: pointer;
+	overflow: hidden;
+	transition: all 0.3s ease;
+	backdrop-filter: blur(10px);
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+#connect button::before {
+	content: "";
+	position: absolute;
+	top: -50%;
+	left: -50%;
+	width: 200%;
+	height: 200%;
+	background: linear-gradient(
+		45deg,
+		rgba(82, 113, 179, 0.5),
+		rgba(30, 64, 175, 0.5),
+		rgba(82, 113, 179, 0.5)
+	);
+	filter: blur(15px);
+	opacity: 0;
+	transition: opacity 0.3s, transform 0.5s;
+	transform: rotate(45deg) translate(-50%, -50%);
+	pointer-events: none;
+}
+
+#connect button:hover::before {
+	opacity: 1;
+	transform: rotate(45deg) translate(0%, 0%);
+}
+
+#connect button::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: -75%;
+	width: 50%;
+	height: 100%;
+	background: linear-gradient(
+		120deg,
+		rgba(255, 255, 255, 0.3),
+		rgba(255, 255, 255, 0),
+		rgba(255, 255, 255, 0.3)
+	);
+	transform: skewX(-25deg);
+	transition: all 0.5s ease;
+	pointer-events: none;
+}
+
+#connect button:hover::after {
+	left: 125%;
+	transition: all 0.8s ease-in-out;
+}
+
+#connect button:hover {
+	transform: translateY(-2px) scale(1.05);
+	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+#connect button:active {
+	transform: translateY(1px) scale(0.98);
+	box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+#connect button span {
+	position: relative;
+	z-index: 1;
+	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 500px) {
+	#connect button {
+		width: 80%;
+		font-size: 0.95rem;
+	}
+}
+
+#deletePopUp {
+	color: white;
+	text-align: center;
+}
+
+#deletePopUp p {
+	font-size: 1.2rem;
+	font-weight: 500;
+	margin-bottom: 1.5rem;
+	color: #fff;
+	text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+#deleteChoices {
+	display: flex;
+	justify-content: center;
+	gap: 1rem;
+	margin-top: 0.5rem;
+}
+
+#confirmDelete,
+#cancelDelete {
+	border: none;
+	border-radius: 10px;
+	padding: 0.6rem 1.4rem;
+	font-size: 1rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.25s ease;
+	backdrop-filter: blur(5px);
+	box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+}
+
+#confirmDelete {
+	background: rgba(220, 53, 69, 0.9);
+	color: #fff;
+}
+
+#confirmDelete:hover {
+	background: rgba(200, 35, 50, 1);
+	transform: scale(1.05);
+}
+
+#cancelDelete {
+	background: rgba(255, 255, 255, 0.2);
+	color: #fff;
+}
+
+#cancelDelete:hover {
+	background: rgba(255, 255, 255, 0.35);
+	transform: scale(1.05);
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	max-width: 400px;
+	padding: 20px;
+	border-radius: 1rem;
+	background-color: #fff;
+	box-shadow: 1px 5px 5px black;
+}
+
+#inscription,
+#connexion {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+#checkbox {
+	width: 30px;
+	height: 30px;
+}
+.empty-message {
+	display: flex;
+	flex-direction: column; 
+	align-items: center;
+	justify-content: center;
+	color: #000000;
+    font-weight: bold;
+	padding: 20px;
+	text-align: center;
+}
+
+.empty-message .icon {
+	font-size: 3em;
+	margin-bottom: 8px;
+}

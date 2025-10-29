@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="assets/css/style.css">
+  <title>TO-DO List</title>
+</head>
+
+<body>
+  <div id="nav">
+    <div>
+      <a href="http://127.0.0.1:5500/"><img src="assets/images/Home.svg" alt="home"></a>
+    </div>
+    <select id="choice">
+    </select>
+    <div id="connect">
+      <button>Connexion</button>
+    </div>
+  </div>
+  <ul id="taskList"></ul>
+  <input id="newTaskName" type="text" />
+  <input id="newTaskDate" type="date" />
+  <select name="" id="newTaskType">
+    <option value="simple">Simple</option>
+    <option value="appoitment">Appoitment</option>
+  </select>
+  <button id="newTaskValidate">Valider</button>
+  <ul id="taskList"></ul>
+  <h3>Tâches terminées</h3>
+  <ul id="completedTaskList">
+
+  </ul>
+  <div id="deletePopUp" class="modal">
+    <div class="modal-content">
+      <p>Voulez-vous vraiment supprimer cette tâche&nbsp;?</p>
+      <div class="delete-choices">
+        <button id="confirmDelete">Oui</button>
+        <button id="cancelDelete" onclick="closetest()">Non</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="assets/js/script.js"></script>
+  <style>
+    li {
+      display: flex;
+    }
+  </style>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Connexion</title>
+</head>
+
+<body>
+    <div id="nav">
+        <div>
+            <a href="http://127.0.0.1:5500/"><img src="assets/images/Home.svg" alt="home"></a>
+        </div>
+        <select id="choice">
+        </select>
+        <div id="connect">
+            <button>Connexion</button>
+        </div>
+    </div>
+    <h1>Inscription</h1>
+    <div id="inscription">
+        <form id="register" action="">
+            <label for="username">Nom d'utilisateur</label>
+            <input id="username" type="text" name="username" placeholder="Nom d'utilisateur" required>
+
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" placeholder="Email" required>
+
+            <label for="password">Mot de passe</label>
+            <input id="password" type="password" name="password" placeholder="Mot de passe" required>
+
+            <label for="confirmPassword">Confirmation du mot de passe</label>
+            <input id="confirmPassword" type="password" name="confirmPassword" placeholder="Mot de passe" required>
+
+            <button name="register" type="submit">Créer un compte</button>
+        </form>
+    </div>
+    <h1>Connexion</h1>
+    <div id="connexion">
+        <form action="">
+            <label for="login_email">Email</label>
+            <input id="login_email" type="email" name="login_email" placeholder="Email" required>
+
+            <label for="login_password">Mot de passe</label>
+            <input id="login_password" type="password" name="login_password" placeholder="Mot de passe" required>
+
+            <button name="login" type="submit">Se connecter</button>
+    </div>
+    <script type="module" src="assets/js/script.js"></script>
+</body>
+
+</html>
