@@ -1,41 +1,50 @@
-/* Classe représentant une tâche simple */
+import Interface from "./Interface.js"; // si nécessaire pour rafraîchir l'affichage
+
 export default class Task {
-  // Compteur statique pour attribuer un ID unique à chaque tâche
   static idCount = 1;
 
-  id;       // Identifiant de la tâche
-  name;     // Nom de la tâche
-  checked = false; // Indique si la tâche est cochée
-  checkbox; // Élément HTML associé
+  id;
+  name;
+  checked = false;
+  checkbox;
   deletebutton;
 
   constructor(data) {
-    // Assigne un ID unique à la tâche
-    this.id = Task.idCount;
-    Task.idCount++;
+    this.id = Task.idCount++;
+    this.name = data.name || `Tâche ${this.id}`;
 
-    // Récupère le nom depuis les données
-    this.name = data.name;
-
-    // Crée la case à cocher dans le DOM
+    // Crée la case à cocher
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
+    checkbox.classList.add("checkbox");
     this.checkbox = checkbox;
 
-    // Ajoute un événement pour inverser l’état coché/non coché
-    checkbox.addEventListener("click", () => this.toggle());
+    // Lorsque l'utilisateur clique sur la checkbox, on inverse l'état et on rafraîchit l'affichage
+    checkbox.addEventListener("click", () => {
+      this.toggle();
+      // Raffraîchir l'affichage en demandant la liste au root app exposé
+      if (window.app) Interface.displayTasks(window.app.tasks);
+    });
 
     const deletebutton = document.createElement("button");
-    deletebutton.textContent = "❌";
+    deletebutton.textContent = "🗑️";
     deletebutton.title = "Supprimer la tâche";
-    this.deletebutton = deletebutton
-    
+    deletebutton.classList.add("delete-btn");
+    this.deletebutton = deletebutton;
+
+    // ouverture du popup de confirmation
     deletebutton.addEventListener("click", () => {
       window.taskToDelete = this;
-      opentest();
+      if (typeof window.opentest === "function") window.opentest();
     });
   }
-  // Inverse l’état "checked" de la tâche
+
   toggle = () => (this.checked = !this.checked);
 
+  // Méthode pour supprimer cette tâche du tableau app.tasks et rafraîchir l'affichage
+  delete = () => {
+    if (!window.app) return;
+    window.app.tasks = window.app.tasks.filter(t => t !== this);
+    Interface.displayTasks(window.app.tasks);
+  };
 }

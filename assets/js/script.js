@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const options = {
         1: { label: 'TO-DO List', url: '/todolist.html' },
         2: { label: 'Rendez-vous', url: '/appointment.html' },
-        3: { label: 'Google', url: 'https://google.com' },
     };
 
     select.innerHTML = '<option value="">-- Choisir une page --</option>';

@@ -95,20 +95,27 @@ body {
 	transform: scale(1.05);
 }
 
-ul li button {
-	background: rgba(255, 255, 255, 0.2);
-	color: #333;
+.delete-btn {
+	width: 32px;
+	height: 32px;
+	background: #d9534f;
+	border-radius: 50%;
 	border: none;
-	border-radius: 6px;
-	padding: 0.3rem 0.6rem;
 	cursor: pointer;
-	font-size: 0.9rem;
-	transition: background 0.2s, color 0.2s;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	font-size: 1.3rem;
+	color: white;
+
+	transition: 0.2s ease;
 }
 
-ul li button:hover {
-	background: #5271b3;
-	color: #fff;
+.delete-btn:hover {
+	background: #c9302c;
+	transform: scale(1.15);
 }
 
 #nav {
@@ -361,17 +368,17 @@ form {
 	justify-content: center;
 }
 
-#checkbox {
+.checkbox {
 	width: 30px;
 	height: 30px;
 }
 .empty-message {
 	display: flex;
-	flex-direction: column; 
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	color: #000000;
-    font-weight: bold;
+	font-weight: bold;
 	padding: 20px;
 	text-align: center;
 }
@@ -379,4 +386,42 @@ form {
 .empty-message .icon {
 	font-size: 3em;
 	margin-bottom: 8px;
+}
+
+/* CALENDRIER */
+
+#calendar {
+	max-width: 950px;
+	margin: 40px auto;
+	padding: 10px;
+	background:#b8b8b8;
+	border-radius: 10px;
+	box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.1);
+}
+
+.fc .fc-toolbar-title {
+	font-size: 22px;
+	font-weight: bold;
+	color: #2c3e50;
+}
+
+.fc .fc-button {
+	background: #5271b3;
+	border: none;
+	padding: 6px 12px;
+	border-radius: 6px;
+	color: white;
+	transition: 0.15s;
+}
+
+.fc .fc-button:hover {
+	background: #33466d;
+}
+
+.fc-daygrid-day {
+	transition: 0.15s;
+}
+
+.fc-daygrid-day:hover {
+	background-color: rgba(52, 152, 219, 0.1);
 }
